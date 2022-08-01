@@ -5,6 +5,6 @@ public class Main {
         JFrame frame=new JFrame();
         frame.setSize(800,600);
         frame.setVisible(true);
-        FileClass.readfile();
+        FileClass.showAdvancements();
     }
 }
