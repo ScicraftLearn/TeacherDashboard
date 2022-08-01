@@ -8,18 +8,23 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileClass{
-    //TODO : MAkE PATH VARIABLE
+public class FileClass {
+    //TODO : allow multiple paths
+    //DONE : MAkE PATH VARIABLE
     private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
     private static List<JSONObject> items = new ArrayList<>();
+    public static boolean pathCorrect = false;
 
     //TODO : ADD ERROR CHECKING
-    public static void openFileChooser(){
-        JFileChooser chooser=new JFileChooser();
+    public static void openFileChooser() {
+        JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int returnvalue=chooser.showSaveDialog(null);
-        if(returnvalue == JFileChooser.APPROVE_OPTION){
-            path=chooser.getSelectedFile();
+        int returnvalue = chooser.showSaveDialog(null);
+        if (returnvalue == JFileChooser.APPROVE_OPTION) {
+            path = chooser.getSelectedFile();
+            if(path.isDirectory()&&path.getPath().endsWith("advancements"))pathCorrect=true;
+        } else {
+            pathCorrect = false;
         }
     }
 
