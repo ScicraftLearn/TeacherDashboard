@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileClass {
+    //TODO : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
     //TODO : allow multiple paths
     //DONE : MAkE PATH VARIABLE
     private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
