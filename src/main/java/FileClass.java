@@ -7,13 +7,13 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleToIntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileClass {
     //DONE : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
     //TODO : allow multiple paths
+    private static ArrayList<File> paths=new ArrayList<>();
     //DONE : MAkE PATH VARIABLE
     private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
     private static List<JSONObject> items = new ArrayList<>();
@@ -31,6 +31,7 @@ public class FileClass {
         if (returnvalue == JFileChooser.APPROVE_OPTION) {
             path = chooser.getSelectedFile();
             if (path.isDirectory() && path.getPath().endsWith("advancements")) {
+                paths.add(path);
                 pathCorrect = true;
             }else{
                 Pattern pattern= Pattern.compile("(\\.minecraft\\saves)?");
@@ -39,6 +40,7 @@ public class FileClass {
                     String newpath=path.toString()+"\\advancements";
                     System.out.println(newpath);
                     path=new File(newpath);
+                    paths.add(path);
                     pathCorrect=true;
                 }
             }
@@ -47,18 +49,21 @@ public class FileClass {
         }
     }
 
+    //Will return of every JSON object from every path
     public static List<JSONObject> showAdvancements() {
-        //listFiles(path);
-        for (Path p : listFiles(path)) {
-            JSONParser parser = new JSONParser();
-            try {
-                JSONObject jsonfile = (JSONObject) parser.parse(new FileReader(p.toString()));
-                for (Object j : jsonfile.values()
-                ) {
-                    items.add((JSONObject) j);
+        for (File f : paths
+             ) {
+            for (Path p : listFiles(f)) {
+                JSONParser parser = new JSONParser();
+                try {
+                    JSONObject jsonfile = (JSONObject) parser.parse(new FileReader(p.toString()));
+                    for (Object j : jsonfile.values()
+                    ) {
+                        items.add((JSONObject) j);
+                    }
+                } catch (Exception e) {
+                    // TODO : IETS MET DE ERRORS ELIASJE
                 }
-            } catch (Exception e) {
-                // TODO : IETS MET DE ERRORS ELIASJE
             }
         }
         return items;

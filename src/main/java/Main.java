@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -15,9 +14,6 @@ public class Main {
     private static JFrame mainFrame = new JFrame();
     private static JPanel advPanel = new JPanel();
     private static Label text = new Label("Wrong directory");
-
-    //Allowing for multiple files at once
-    private static ArrayList<FileClass> files=new ArrayList<>();
 
     //DONE : implement button for filtering
     private static Boolean filtered=null;
