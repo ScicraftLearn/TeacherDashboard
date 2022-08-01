@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileClass {
-    //TODO : FILTER MINECRAFT AND SCICRAFT
+    //TODO : FILTER MINECRAFT AND SCICRAFT (based on json?)
     //DONE : FILTER RECIPE ADVANCEMENTS (these unlock at every recipe and are too much and not needed)
     //DONE : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
     //DONE : allow multiple paths
