@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class FileClass {
     //DONE : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
-    //TODO : allow multiple paths
+    //DONE : allow multiple paths
     private static ArrayList<File> paths=new ArrayList<>();
     //DONE : MAkE PATH VARIABLE
     private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
@@ -27,6 +27,7 @@ public class FileClass {
         File mcPath = new File(homeDir + "\\Appdata\\Roaming\\.minecraft\\saves");
         JFileChooser chooser = new JFileChooser(mcPath);
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        chooser.setMultiSelectionEnabled(true);
         int returnvalue = chooser.showSaveDialog(null);
         if (returnvalue == JFileChooser.APPROVE_OPTION) {
             path = chooser.getSelectedFile();
