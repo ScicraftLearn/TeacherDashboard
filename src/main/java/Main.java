@@ -23,6 +23,7 @@ public class Main {
     private static Boolean filtered=null;
 
     public static void main(String[] args) {
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         loadFile();
         loadMenuBar();
         mainFrame.setVisible(true);
@@ -55,6 +56,7 @@ public class Main {
     private static void loadMenuBar(){
         //File menu
         Menu fileMenu=new Menu("File");
+        //Opening new files
         MenuItem openItem=new MenuItem("Open File");
         openItem.addActionListener(new ActionListener() {
             @Override
@@ -63,6 +65,7 @@ public class Main {
                 loadFile();
             }
         });
+        //Closing opened files
         MenuItem closeItem=new MenuItem("Close File");
         closeItem.addActionListener(new ActionListener() {
             @Override
@@ -71,8 +74,17 @@ public class Main {
                 mainFrame.setVisible(true);
             }
         });
+        //Exiting program
+        MenuItem exitItem=new MenuItem("Exit");
+        exitItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(666);
+            }
+        });
         fileMenu.add(openItem);
         fileMenu.add(closeItem);
+        fileMenu.add(exitItem);
 
         //Filter menu
         Menu filterMenu=new Menu("Filter");
