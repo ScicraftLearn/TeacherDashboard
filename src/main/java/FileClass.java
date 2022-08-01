@@ -11,6 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileClass {
+    //TODO : FILTER MINECRAFT AND SCICRAFT
+    //DONE : FILTER RECIPE ADVANCEMENTS (these unlock at every recipe and are too much and not needed)
     //DONE : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
     //DONE : allow multiple paths
     private static ArrayList<File> paths=new ArrayList<>();
@@ -22,6 +24,7 @@ public class FileClass {
     //DONE : choose world folder and get advancement folder in code
     //TODO : ADD ERROR CHECKING
     public static void openFileChooser() {
+        //Getting the minecraft directory in some steps to allow easy access to saves folder
         String homeDir = System.getProperty("user.home");
         System.out.println(homeDir);
         File mcPath = new File(homeDir + "\\Appdata\\Roaming\\.minecraft\\saves");
@@ -35,8 +38,10 @@ public class FileClass {
                 paths.add(path);
                 pathCorrect = true;
             }else{
+                //See if the folder is a world folder
                 Pattern pattern= Pattern.compile("(\\.minecraft\\saves)?");
                 Matcher matcher =pattern.matcher(path.toString());
+                //If so, get the advancement folder from the world folder
                 if(matcher.find()){
                     String newpath=path.toString()+"\\advancements";
                     System.out.println(newpath);
@@ -60,7 +65,9 @@ public class FileClass {
                     JSONObject jsonfile = (JSONObject) parser.parse(new FileReader(p.toString()));
                     for (Object j : jsonfile.values()
                     ) {
-                        items.add((JSONObject) j);
+                        if(!j.toString().contains("has_the_recipe")){
+                            items.add((JSONObject) j);
+                        }
                     }
                 } catch (Exception e) {
                     // TODO : IETS MET DE ERRORS ELIASJE
