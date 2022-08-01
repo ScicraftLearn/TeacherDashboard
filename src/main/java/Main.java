@@ -9,9 +9,9 @@ public class Main {
 
     //TODO : create proper layout and buttons
     //TODO : fix layout
+    //TODO : enable scrolling
 
     private static JFrame mainFrame = new JFrame();
-    private static JScrollPane pane=new JScrollPane();
     private static JPanel advPanel = new JPanel();
     //TODO : implement button for filtering
     private static Boolean filtered=null;
@@ -90,9 +90,7 @@ public class Main {
             HotKeyClass.startListeners();
             getButtons();
             mainFrame.setSize(800, 600);
-            pane.add(advPanel);
-            pane.setVisible(true);
-            mainFrame.add(pane);
+            mainFrame.add(advPanel);
         }
         else {
             mainFrame.setSize(800,600);
