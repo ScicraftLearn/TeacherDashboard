@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FileClass {
     private static File path = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
-    private static List<JSONObject> items=new ArrayList<>();
+    private static List<JSONObject> items = new ArrayList<>();
 
     public static List<JSONObject> showAdvancements() {
         //listFiles(path);
@@ -17,8 +17,8 @@ public class FileClass {
             JSONParser parser = new JSONParser();
             try {
                 JSONObject jsonfile = (JSONObject) parser.parse(new FileReader(p.toString()));
-                for (Object j:jsonfile.values()
-                     ) {
+                for (Object j : jsonfile.values()
+                ) {
                     items.add((JSONObject) j);
                 }
             } catch (Exception e) {
@@ -43,12 +43,32 @@ public class FileClass {
         }
         return files;
     }
-    public static String getCriteria(JSONObject j){
+
+    public static String getCriteria(JSONObject j) {
         return j.get("criteria").toString();
     }
 
-    public static List<JSONObject> showCompleted(){
-        //TODO : IMPLEMENT FILTER
-        return null;
+    //DONE : FILTER OPTIONS BASED ON COMPLETION
+    public static List<JSONObject> showCompleted() {
+        List<JSONObject> items = new ArrayList<>();
+        for (JSONObject j : showAdvancements()
+        ) {
+            if (!j.get("done").toString().contains("true")) {
+                items.add(j);
+            }
+        }
+        return items;
+    }
+
+    //DONE : FILTER OPTIONS BASED ON DOING
+    public static List<JSONObject> showDoing() {
+        List<JSONObject> items = new ArrayList<>();
+        for (JSONObject j : showAdvancements()
+        ) {
+            if (j.get("done").toString().contains("true")) {
+                items.add(j);
+            }
+        }
+        return items;
     }
 }

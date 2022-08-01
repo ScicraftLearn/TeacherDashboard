@@ -8,6 +8,8 @@ public class Main {
 
     private static JFrame mainFrame = new JFrame();
     private static JPanel advPanel = new JPanel();
+    //TODO : implement button for filtering
+    private static Boolean filtered=null;
 
     public static void main(String[] args) {
         HotKeyClass.startListeners();
@@ -17,11 +19,26 @@ public class Main {
         mainFrame.setVisible(true);
     }
 
+    //DONE : filter buttons
     private static void getButtons() {
-        for (JSONObject j : FileClass.showAdvancements()
-        ) {
-            System.out.println(j.toString());
-            advPanel.add(new JButton(FileClass.getCriteria(j)));
+        if(filtered != null && !filtered){
+            for (JSONObject j:FileClass.showDoing()
+            ) {
+                System.out.println(j.toString());
+                advPanel.add(new JButton(FileClass.getCriteria(j)));
+            }
+        } else if(filtered!=null && filtered){
+            for (JSONObject j:FileClass.showCompleted()
+                 ) {
+                System.out.println(j.toString());
+                advPanel.add(new JButton(FileClass.getCriteria(j)));
+            }
+        }else{
+            for (JSONObject j : FileClass.showAdvancements()
+            ) {
+                System.out.println(j.toString());
+                advPanel.add(new JButton(FileClass.getCriteria(j)));
+            }
         }
     }
 }
