@@ -1,15 +1,27 @@
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileClass {
-    private static File path = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
+public class FileClass{
+    //TODO : MAkE PATH VARIABLE
+    private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
     private static List<JSONObject> items = new ArrayList<>();
+
+    //TODO : ADD ERROR CHECKING
+    public static void openFileChooser(){
+        JFileChooser chooser=new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        int returnvalue=chooser.showSaveDialog(null);
+        if(returnvalue == JFileChooser.APPROVE_OPTION){
+            path=chooser.getSelectedFile();
+        }
+    }
 
     public static List<JSONObject> showAdvancements() {
         //listFiles(path);

@@ -12,6 +12,9 @@ public class Main {
     private static Boolean filtered=null;
 
     public static void main(String[] args) {
+
+        FileClass.openFileChooser();
+
         HotKeyClass.startListeners();
         getButtons();
         mainFrame.setSize(800, 600);
