@@ -19,7 +19,7 @@ public class Main {
     //Allowing for multiple files at once
     private static ArrayList<FileClass> files=new ArrayList<>();
 
-    //TODO : implement button for filtering
+    //DONE : implement button for filtering
     private static Boolean filtered=null;
 
     public static void main(String[] args) {
@@ -50,6 +50,7 @@ public class Main {
                 advPanel.add(new JButton(FileClass.getCriteria(j)));
             }
         }
+        mainFrame.add(advPanel);
     }
 
     //TODO : IMPLEMENT BUTTON CLICK FUNCTIONALITY
@@ -92,21 +93,33 @@ public class Main {
         enableTrue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO : IMPLEMENT LISTENER
+                //DONE : IMPLEMENT LISTENER
+                resetButtons();
+                filtered=false;
+                getButtons();
+                mainFrame.setVisible(true);
             }
         });
         MenuItem enableFalse=new MenuItem("Uncompleted");
         enableFalse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO : IMPLEMENT LISTENER
+                //DONE : IMPLEMENT LISTENER
+                resetButtons();
+                filtered=true;
+                getButtons();
+                mainFrame.setVisible(true);
             }
         });
         MenuItem disableFilter=new MenuItem("Show All");
         disableFilter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO : IMPLEMENT ACTION LISTENER
+                //DONE : IMPLEMENT ACTION LISTENER
+                resetButtons();
+                filtered=null;
+                getButtons();
+                mainFrame.setVisible(true);
             }
         });
         filterMenu.add(enableTrue);

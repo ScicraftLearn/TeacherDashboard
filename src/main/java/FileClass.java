@@ -7,23 +7,41 @@ import java.io.FileReader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoubleToIntFunction;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileClass {
-    //TODO : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
+    //DONE : GET DEFAULT MINECRAFT PATH AND ALLOW CHOOSING OF WORLD
     //TODO : allow multiple paths
     //DONE : MAkE PATH VARIABLE
     private static File path;// = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
     private static List<JSONObject> items = new ArrayList<>();
     public static boolean pathCorrect = false;
 
+    //DONE : choose world folder and get advancement folder in code
     //TODO : ADD ERROR CHECKING
     public static void openFileChooser() {
-        JFileChooser chooser = new JFileChooser();
+        String homeDir = System.getProperty("user.home");
+        System.out.println(homeDir);
+        File mcPath = new File(homeDir + "\\Appdata\\Roaming\\.minecraft\\saves");
+        JFileChooser chooser = new JFileChooser(mcPath);
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int returnvalue = chooser.showSaveDialog(null);
         if (returnvalue == JFileChooser.APPROVE_OPTION) {
             path = chooser.getSelectedFile();
-            if(path.isDirectory()&&path.getPath().endsWith("advancements"))pathCorrect=true;
+            if (path.isDirectory() && path.getPath().endsWith("advancements")) {
+                pathCorrect = true;
+            }else{
+                Pattern pattern= Pattern.compile("(\\.minecraft\\saves)?");
+                Matcher matcher =pattern.matcher(path.toString());
+                if(matcher.find()){
+                    String newpath=path.toString()+"\\advancements";
+                    System.out.println(newpath);
+                    path=new File(newpath);
+                    pathCorrect=true;
+                }
+            }
         } else {
             pathCorrect = false;
         }
