@@ -25,15 +25,6 @@ public class FileClass {
                 // TODO : IETS MET DE ERRORS ELIASJE
             }
         }
-        /*
-        for (JSONObject j:items
-             ) {
-            if(j.get("done").toString().contains("true")){
-                System.out.println("Advancement gehaald!");
-            }else{
-                System.out.println("Advancement niet gehaald!");
-            }
-        }*/
         return items;
     }
 
@@ -54,5 +45,10 @@ public class FileClass {
     }
     public static String getCriteria(JSONObject j){
         return j.get("criteria").toString();
+    }
+
+    public static List<JSONObject> showCompleted(){
+        //TODO : IMPLEMENT FILTER
+        return null;
     }
 }
