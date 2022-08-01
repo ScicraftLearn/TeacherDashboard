@@ -9,10 +9,9 @@ import java.util.List;
 
 public class FileClass {
     private static File path = new File("C:\\Users\\Elias Neel\\AppData\\Roaming\\.minecraft\\saves\\Deboys_)(World 1)\\advancements");
-    public static List<JSONObject> items=new ArrayList<>();
+    private static List<JSONObject> items=new ArrayList<>();
 
-    public static void showAdvancements() {
-
+    public static List<JSONObject> showAdvancements() {
         //listFiles(path);
         for (Path p : listFiles(path)) {
             JSONParser parser = new JSONParser();
@@ -35,6 +34,7 @@ public class FileClass {
                 System.out.println("Advancement niet gehaald!");
             }
         }*/
+        return items;
     }
 
     //Show all the files in the advancement folder
@@ -51,5 +51,8 @@ public class FileClass {
             }
         }
         return files;
+    }
+    public static String getCriteria(JSONObject j){
+        return j.get("criteria").toString();
     }
 }
